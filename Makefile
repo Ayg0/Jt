@@ -1,6 +1,6 @@
 NAME = test
 
-SRC = test.c
+SRC = test.c jmain.c
 
 all: $(NAME)
 

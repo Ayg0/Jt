@@ -1,9 +1,11 @@
-==========================
-Line: 31 Test No 1: PASSED
-Line: 32 Test No 2: PASSED
-Line: 33 Test No 3: PASSED
-Line: 34 Test No 4: PASSED
-Line: 35 Test No 5: FAILED Expected Hey, resulted Hi
-Line: 36 Test No 6: PASSED
+========================== JTEST START ==========================
+Line: 5 Test No 1: PASSED
+Line: 6 Test No 2: PASSED
+Line: 7 Test No 3: PASSED
+Line: 8 Test No 4: FAILED Expected 7.300, resulted 7.400
+Line: 9 Test No 5: PASSED
+Line: 10 Test No 6: FAILED Expected Hey, resulted Hi
+Line: 11 Test No 7: PASSED
 
-6 Tests Ran, 5 PASSED, and 1 Failed, 83.33%
+7 Tests Ran, 5 PASSED, and 2 Failed, 71.43%
+=========================== JTEST END ===========================

@@ -35,10 +35,12 @@ void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, 
 	if (cmp(expected, resulted))
 		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
 	else{
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected ");
+		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR);
+		fprintf(stderr, "\n--- EXPECTED ---\n");
 		print(expected);
-		fprintf(stderr, ", Resulted ");
+		fprintf(stderr, "--- Resulted ---\n");
 		print(resulted);
+		fprintf(stderr, "----------------\n");
 		tests.KOTests++;
 	}
 }

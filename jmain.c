@@ -22,7 +22,7 @@ void isEqualFloat(float expected, float resulted, int lineNb){
 
 void isEqualStr(const char *expected, const char *resulted, int lineNb){
 	tests.TestsRan++;
-	fprintf(stderr, "Line%03d Test No %03d: ", lineNb, tests.TestsRan);
+	fprintf(stderr, "Line: %03d Test No %03d: ", lineNb, tests.TestsRan);
 	if (!strcmp(expected, resulted))
 		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
 	else

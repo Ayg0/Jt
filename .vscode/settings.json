@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"jtest.h": "c"
+		"jtest.h": "c",
+		"__locale": "c"
 	}
 }

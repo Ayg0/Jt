@@ -29,6 +29,20 @@ void isEqualStr(const char *expected, const char *resulted, int lineNb){
 		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %s, resulted %s\n", expected, resulted), tests.KOTests++;
 }
 
+void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, void *), void (*print)(void *)){
+	tests.TestsRan++;
+	fprintf(stderr, "Line: %03d Test No %03d: ", lineNb, tests.TestsRan);
+	if (cmp(expected, resulted))
+		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
+	else{
+		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected ");
+		print(expected);
+		fprintf(stderr, ", Resulted ");
+		print(resulted);
+		tests.KOTests++;
+	}
+}
+
 void jStart(){
 	fprintf(stderr, "========================== JTEST START ==========================\n");
 }

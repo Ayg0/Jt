@@ -1,11 +1,11 @@
 ========================== JTEST START ==========================
-Line: 5 Test No 1: PASSED
-Line: 6 Test No 2: PASSED
-Line: 7 Test No 3: PASSED
+Line: 5 Test No 1: [1;37;42mPASSED[0m
+Line: 6 Test No 2: [1;37;42mPASSED[0m
+Line: 7 Test No 3: [1;37;42mPASSED[0m
 Line: 8 Test No 4: FAILED Expected 7.300, resulted 7.400
-Line: 9 Test No 5: PASSED
+Line: 9 Test No 5: [1;37;42mPASSED[0m
 Line: 10 Test No 6: FAILED Expected Hey, resulted Hi
-Line: 11 Test No 7: PASSED
+Line: 11 Test No 7: [1;37;42mPASSED[0m
 
 7 Tests Ran, 5 PASSED, and 2 Failed, 71.43%
 =========================== JTEST END ===========================

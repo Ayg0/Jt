@@ -6,6 +6,7 @@ void	printTestInfo(int lineNb, char *fileName){
 	static char *file = NULL;
 
 	if (!file || strcmp(file, fileName)){
+		free(file);
 		file = strdup(fileName);
 		fprintf(stderr, "===============> Entering %s\n", file);
 	}

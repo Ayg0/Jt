@@ -32,7 +32,8 @@ int	main(){
 	ASSERT_STR_EQU("Hi", "Hi");
 	ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
 	v2.x = 0;
-	v2.y = 6;
-	ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
+	v2.y = 5;
+	ASSERT_DATA_EQU(&v1, &v2, cmpVector, NULL);
 	JTEST_END();
 }
+

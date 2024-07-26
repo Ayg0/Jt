@@ -1,5 +1,5 @@
 ========================== JTEST START ==========================
-<Entering jmain.c Tests>
+===============> Entering test.c
 Test #001 Line #026: |PASSED|
 Test #002 Line #027: |PASSED|
 Test #003 Line #028: |PASSED|
@@ -13,7 +13,12 @@ x =   0; y =   6
 --- Resulted ---
 x =   1; y =   6
 ----------------
-Test #009 Line #036: |PASSED|
+Test #009 Line #036: |FAILED|
+--- EXPECTED ---
+AYO Can't print this
+--- Resulted ---
+AYO Can't print this
+----------------
 
-9 Tests Ran, 6 PASSED, and 3 Failed, 66.67%
+9 Tests Ran, 5 PASSED, and 4 Failed, 55.56%
 =========================== JTEST END ===========================

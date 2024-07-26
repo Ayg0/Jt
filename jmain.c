@@ -18,6 +18,11 @@ void	displaySuccess(){
 	tests.OKTests++;
 }
 
+void	displayFail(){
+	tests.KOTests++;
+	fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR);
+}
+
 void jStart(){
 	fprintf(stderr, "========================== JTEST START ==========================\n");
 }
@@ -36,8 +41,10 @@ void isEqualInt(int expected, int resulted, int lineNb, char *fileName){
 	printTestInfo(lineNb, fileName);
 	if (expected == resulted)
 		displaySuccess();
-	else
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %d, resulted %d\n", expected, resulted), tests.KOTests++;
+	else{
+		displayFail();
+		fprintf(stderr, " => Expected %d, resulted %d\n", expected, resulted);
+	}
 }
 
 void isEqualFloat(float expected, float resulted, int lineNb, char *fileName){
@@ -45,8 +52,10 @@ void isEqualFloat(float expected, float resulted, int lineNb, char *fileName){
 	printTestInfo(lineNb, fileName);
 	if (expected == resulted)
 		displaySuccess();
-	else
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %.3f, resulted %.3f\n", expected, resulted), tests.KOTests++;
+	else{
+		displayFail();
+		fprintf(stderr, " => Expected %.3f, resulted %.3f\n", expected, resulted);
+	}
 }
 
 void isEqualStr(const char *expected, const char *resulted, int lineNb, char *fileName){
@@ -54,8 +63,17 @@ void isEqualStr(const char *expected, const char *resulted, int lineNb, char *fi
 	printTestInfo(lineNb, fileName);
 	if (!strcmp(expected, resulted))
 		displaySuccess();
+	else{
+		displayFail();
+		fprintf(stderr, " => Expected %s, resulted %s\n", expected, resulted);
+	}
+}
+
+void	printData(void *data, void (*print)(void *)){
+	if (print)
+		print(data);
 	else
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %s, resulted %s\n", expected, resulted), tests.KOTests++;
+		fprintf(stderr, "AYO Can't print this\n");
 }
 
 void	isDataEqual(void *expected, void *resulted, int lineNb, char *fileName, int (*cmp)(void *, void *), void (*print)(void *)){
@@ -64,12 +82,11 @@ void	isDataEqual(void *expected, void *resulted, int lineNb, char *fileName, int
 	if (cmp(expected, resulted))
 		displaySuccess();
 	else{
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR "\n");
-		fprintf(stderr, "--- EXPECTED ---\n");
-		print(expected);
+		displayFail();
+		fprintf(stderr, "\n--- EXPECTED ---\n");
+		printData(expected, print);
 		fprintf(stderr, "--- Resulted ---\n");
-		print(resulted);
+		printData(resulted, print);
 		fprintf(stderr, "----------------\n");
-		tests.KOTests++;
 	}
 }

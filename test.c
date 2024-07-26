@@ -20,7 +20,7 @@ void printVector(void *data){
 
 TEST_START(vectorSimpleTests)
 	ASSERT_FLOAT_EQU(7.3, 7.4);
-	ASSERT_STR_EQU("Hey", "Hi");
+	ASSERT_INT_EQU(7.3, 7.4);
 	ASSERT_STR_EQU("Hi", "Hi");
 TEST_END
 
@@ -31,6 +31,12 @@ TEST_START(vectorDataTests)
 	v2.x = 0;
 	v2.y = 5;
 	ASSERT_DATA_EQU(&v1, &v2, cmpVector, NULL);
+TEST_END
+
+TEST_START(sprintfTest)
+	char s[20];
+	sprintf(s, "%s", "Hey");
+	ASSERT_STR_EQU("Hey", s);
 TEST_END
 
 int	main(){

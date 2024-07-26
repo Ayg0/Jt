@@ -26,7 +26,7 @@ typedef struct testStruct{
         registerTest(base); \
     }\
 	void base(){\
-		fprintf(stderr, "\n" BLUE_BOLD_COLOR "TestGroup" DEFF_COLOR " %s:\n", __func__);\
+		fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s:\n", __COUNTER__, __func__);\
 
 # define TEST_END }
 

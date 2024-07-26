@@ -3,7 +3,7 @@
 _testStruct jTestData;
 
 void	printTestInfo(int lineNb){
-	static int currentTest = 1;
+	static int currentTest;
 	fprintf(stderr, "Test #%03d Line #%03d: ", currentTest, lineNb);
 	currentTest++;
 }
@@ -23,12 +23,18 @@ void jStart(){
 }
 
 void jEnd(){
-	int totalTests = jTestData.OKTests + jTestData.KOTests;
-	fprintf(stderr, "\n%d Tests Ran, %d PASSED, and %d Failed, %.2f\%\n", 
+	int		totalTests = jTestData.OKTests + jTestData.KOTests;
+	float	successPercentage;
+
+	if (totalTests != 0)
+		successPercentage = (float)(jTestData.OKTests * 100) / totalTests;
+	else
+		successPercentage = 0;
+	fprintf(stderr, "\nTESTS RAN:    %d\nPASSED:       %d\nFailed:       %d\nSUCCESS RATE: %.2f%%\n", 
 	totalTests,
 	jTestData.OKTests,
 	jTestData.KOTests,
-	(float)(jTestData.OKTests * 100) / totalTests);
+	successPercentage);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
 }
 
@@ -86,7 +92,7 @@ void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, 
 
 void	registerTest(testFunction test){
 	if (jTestData.testsNb >= MAX_TESTS){
-		fprintf(stderr, "Sure about Running more than %d Tests ?\nYou can change it from the JTest.h", MAX_TESTS);
+		fprintf(stderr, "Are you Sure about Running more than %d TestGroups ?!?\nif Yes: You can change it from the JTest.h\n", MAX_TESTS);
 		exit(1);
 	}
 	jTestData.tests[jTestData.testsNb].func = test;

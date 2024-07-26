@@ -2,47 +2,19 @@
 
 _testStruct tests;
 
-void isEqualInt(int expected, int resulted, int lineNb){
-	tests.TestsRan++;
-	fprintf(stderr, "Line: %03d Test No %03d: ", lineNb, tests.TestsRan);
-	if (expected == resulted)
-		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
-	else
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %d, resulted %d\n", expected, resulted), tests.KOTests++;
-}
+void	printTestInfo(int lineNb, char *fileName){
+	static char *file = NULL;
 
-void isEqualFloat(float expected, float resulted, int lineNb){
-	tests.TestsRan++;
-	fprintf(stderr, "Line: %03d Test No %03d: ", lineNb, tests.TestsRan);
-	if (expected == resulted)
-		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
-	else
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %.3f, resulted %.3f\n", expected, resulted), tests.KOTests++;
-}
-
-void isEqualStr(const char *expected, const char *resulted, int lineNb){
-	tests.TestsRan++;
-	fprintf(stderr, "Line: %03d Test No %03d: ", lineNb, tests.TestsRan);
-	if (!strcmp(expected, resulted))
-		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
-	else
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %s, resulted %s\n", expected, resulted), tests.KOTests++;
-}
-
-void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, void *), void (*print)(void *)){
-	tests.TestsRan++;
-	fprintf(stderr, "Line: %03d Test No %03d: ", lineNb, tests.TestsRan);
-	if (cmp(expected, resulted))
-		fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n"), tests.OKTests++;
-	else{
-		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR);
-		fprintf(stderr, "\n--- EXPECTED ---\n");
-		print(expected);
-		fprintf(stderr, "--- Resulted ---\n");
-		print(resulted);
-		fprintf(stderr, "----------------\n");
-		tests.KOTests++;
+	if (!file || strcmp(file, fileName)){
+		file = strdup(fileName);
+		fprintf(stderr, "===============> Entering %s\n", file);
 	}
+	fprintf(stderr, "Test #%03d Line #%03d: ", tests.TestsRan, lineNb);
+}
+
+void	displaySuccess(){
+	fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n");
+	tests.OKTests++;
 }
 
 void jStart(){
@@ -56,4 +28,47 @@ void jEnd(){
 	tests.KOTests,
 	(float)(tests.OKTests * 100) / tests.TestsRan);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
+}
+
+void isEqualInt(int expected, int resulted, int lineNb, char *fileName){
+	tests.TestsRan++;
+	printTestInfo(lineNb, fileName);
+	if (expected == resulted)
+		displaySuccess();
+	else
+		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %d, resulted %d\n", expected, resulted), tests.KOTests++;
+}
+
+void isEqualFloat(float expected, float resulted, int lineNb, char *fileName){
+	tests.TestsRan++;
+	printTestInfo(lineNb, fileName);
+	if (expected == resulted)
+		displaySuccess();
+	else
+		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %.3f, resulted %.3f\n", expected, resulted), tests.KOTests++;
+}
+
+void isEqualStr(const char *expected, const char *resulted, int lineNb, char *fileName){
+	tests.TestsRan++;
+	printTestInfo(lineNb, fileName);
+	if (!strcmp(expected, resulted))
+		displaySuccess();
+	else
+		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR" => Expected %s, resulted %s\n", expected, resulted), tests.KOTests++;
+}
+
+void	isDataEqual(void *expected, void *resulted, int lineNb, char *fileName, int (*cmp)(void *, void *), void (*print)(void *)){
+	tests.TestsRan++;
+	printTestInfo(lineNb, fileName);
+	if (cmp(expected, resulted))
+		displaySuccess();
+	else{
+		fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR "\n");
+		fprintf(stderr, "--- EXPECTED ---\n");
+		print(expected);
+		fprintf(stderr, "--- Resulted ---\n");
+		print(resulted);
+		fprintf(stderr, "----------------\n");
+		tests.KOTests++;
+	}
 }

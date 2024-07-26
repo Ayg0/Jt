@@ -1,11 +1,19 @@
 ========================== JTEST START ==========================
-Line: 5 Test No 1: [1;37;42mPASSED[0m
-Line: 6 Test No 2: [1;37;42mPASSED[0m
-Line: 7 Test No 3: [1;37;42mPASSED[0m
-Line: 8 Test No 4: FAILED Expected 7.300, resulted 7.400
-Line: 9 Test No 5: [1;37;42mPASSED[0m
-Line: 10 Test No 6: FAILED Expected Hey, resulted Hi
-Line: 11 Test No 7: [1;37;42mPASSED[0m
+<Entering jmain.c Tests>
+Test #001 Line #026: |PASSED|
+Test #002 Line #027: |PASSED|
+Test #003 Line #028: |PASSED|
+Test #004 Line #029: |PASSED|
+Test #005 Line #030: |FAILED| => Expected 7.300, resulted 7.400
+Test #006 Line #031: |FAILED| => Expected Hey, resulted Hi
+Test #007 Line #032: |PASSED|
+Test #008 Line #033: |FAILED|
+--- EXPECTED ---
+x =   0; y =   6
+--- Resulted ---
+x =   1; y =   6
+----------------
+Test #009 Line #036: |PASSED|
 
-7 Tests Ran, 5 PASSED, and 2 Failed, 71.43%
+9 Tests Ran, 6 PASSED, and 3 Failed, 66.67%
 =========================== JTEST END ===========================

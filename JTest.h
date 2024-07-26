@@ -1,12 +1,12 @@
 #pragma once
 
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+# define MAX_TESTS 100
 
 typedef void (*testFunction)();
-# define MAX_TESTS 100
 typedef struct test
 {
 	const char		*test;
@@ -21,12 +21,12 @@ typedef struct testStruct{
 } _testStruct;
 	
 # define TEST_START(base)\
-	void test_##base(); \
+	void base(); \
     __attribute__((constructor)) void register_##base() { \
-        registerTest(test_##base); \
+        registerTest(base); \
     }\
-	void test_##base(){\
-		fprintf(stderr, "\n%s:\n", __func__);\
+	void base(){\
+		fprintf(stderr, "\n" BLUE_BOLD_COLOR "TestGroup" DEFF_COLOR " %s:\n", __func__);\
 
 # define TEST_END }
 
@@ -34,10 +34,12 @@ typedef struct testStruct{
 	# define DEFF_COLOR "\033[0m"
 	# define SUCC_COLOR "\033[1;37;42m"
 	# define FAIL_COLOR "\033[1;37;41m"
+	# define BLUE_BOLD_COLOR "\033[1;34m"
 #else
 	# define DEFF_COLOR "|"
 	# define SUCC_COLOR "|"
 	# define FAIL_COLOR "|"
+	# define BLUE_BOLD_COLOR "|"
 #endif
 
 # define ASSERT_INT_EQU(EXPECTED, RESULT) isEqualInt(EXPECTED, RESULT, __LINE__)
@@ -47,12 +49,11 @@ typedef struct testStruct{
 
 # define JTEST_START() jStart()
 # define JTEST_END() jEnd()
-
 void	jEnd();
 void	jStart();
 
-void	registerTest(testFunction test);
 void	runTest();
+void	registerTest(testFunction test);
 
 void	isEqualInt(int expected, int resulted, int lineNb);
 void	isEqualFloat(float expected, float resulted, int lineNb);

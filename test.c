@@ -1,6 +1,5 @@
 #include "JTest.h"
 
-
 typedef struct vector
 {
 	int x;
@@ -27,7 +26,7 @@ TEST_END
 
 TEST_START(vectorDataTests)
 	_vector v1 = {.x = 0, .y = 6};
-	_vector v2 = {.x = 1, .y = 6};
+	_vector v2 = {.x = 0, .y = 6};
 	ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
 	v2.x = 0;
 	v2.y = 5;

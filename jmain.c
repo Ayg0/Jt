@@ -1,6 +1,6 @@
 #include "JTest.h"
 
-_testStruct tests;
+_testStruct jTestData;
 
 void	printTestInfo(int lineNb){
 	static int currentTest = 1;
@@ -10,11 +10,11 @@ void	printTestInfo(int lineNb){
 
 void	displaySuccess(){
 	fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n");
-	tests.OKTests++;
+	jTestData.OKTests++;
 }
 
 void	displayFail(){
-	tests.KOTests++;
+	jTestData.KOTests++;
 	fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR);
 }
 
@@ -23,11 +23,12 @@ void jStart(){
 }
 
 void jEnd(){
+	int totalTests = jTestData.OKTests + jTestData.KOTests;
 	fprintf(stderr, "\n%d Tests Ran, %d PASSED, and %d Failed, %.2f\%\n", 
-	tests.testsNb,
-	tests.OKTests,
-	tests.KOTests,
-	(float)(tests.OKTests * 100) / tests.testsNb);
+	totalTests,
+	jTestData.OKTests,
+	jTestData.KOTests,
+	(float)(jTestData.OKTests * 100) / totalTests);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
 }
 
@@ -84,14 +85,16 @@ void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, 
 
 
 void	registerTest(testFunction test){
-	tests.tests[tests.testsNb].func = test;
-	tests.tests[tests.testsNb].test = NULL;
-
-	tests.testsNb++;
+	if (jTestData.testsNb >= MAX_TESTS){
+		fprintf(stderr, "Sure about Running more than %d Tests ?\nYou can change it from the JTest.h", MAX_TESTS);
+		exit(1);
+	}
+	jTestData.tests[jTestData.testsNb].func = test;
+	jTestData.tests[jTestData.testsNb].test = NULL;
+	jTestData.testsNb++;
 }
 
 void	runTest(){
-	for (int i = 0; i < tests.testsNb; i++){
-		tests.tests[i].func();
-	}
+	for (int i = 0; i < jTestData.testsNb; i++)
+		jTestData.tests[i].func();
 }

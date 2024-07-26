@@ -1,6 +1,6 @@
 NAME = test
 
-# USE_COLORS = -DUSE_COLORS=1
+USE_COLORS = -DUSE_COLORS=1
 
 SRC = test.c jmain.c
 

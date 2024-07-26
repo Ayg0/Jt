@@ -27,8 +27,10 @@ typedef struct testStruct{
     }\
 	void base(){\
 		fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s:\n", __COUNTER__, __func__);\
+		Jsetup();\
 
-# define TEST_END }
+# define TEST_END Jcleanup();\
+}
 
 #ifdef USE_COLORS
 	# define DEFF_COLOR "\033[0m"
@@ -51,6 +53,9 @@ typedef struct testStruct{
 # define JTEST_END() jEnd()
 void	jEnd();
 void	jStart();
+
+void	Jsetup();
+void	Jcleanup();
 
 void	runTest();
 void	registerTest(testFunction test);

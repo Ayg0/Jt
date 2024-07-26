@@ -18,6 +18,16 @@ void printVector(void *data){
 	fprintf(stderr, "x = %3d; y = %3d\n", vec->x, vec->y);
 }
 
+void Jsetup(){
+    printf("\033[33mEnv Setup\033[0m\n");
+
+}
+
+void Jcleanup(){
+	printf("\033[33mEnv cleanup\033[0m\n");
+
+}
+
 TEST_START(vectorSimpleTests)
 	ASSERT_FLOAT_EQU(7.3, 7.4);
 	ASSERT_INT_EQU(7.3, 7.4);

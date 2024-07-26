@@ -2,15 +2,10 @@
 
 _testStruct tests;
 
-void	printTestInfo(int lineNb, char *fileName){
-	static char *file = NULL;
-
-	if (!file || strcmp(file, fileName)){
-		free(file);
-		file = strdup(fileName);
-		fprintf(stderr, "===============> Entering %s\n", file);
-	}
-	fprintf(stderr, "Test #%03d Line #%03d: ", tests.TestsRan, lineNb);
+void	printTestInfo(int lineNb){
+	static int currentTest = 1;
+	fprintf(stderr, "Test #%03d Line #%03d: ", currentTest, lineNb);
+	currentTest++;
 }
 
 void	displaySuccess(){
@@ -29,16 +24,15 @@ void jStart(){
 
 void jEnd(){
 	fprintf(stderr, "\n%d Tests Ran, %d PASSED, and %d Failed, %.2f\%\n", 
-	tests.TestsRan,
+	tests.testsNb,
 	tests.OKTests,
 	tests.KOTests,
-	(float)(tests.OKTests * 100) / tests.TestsRan);
+	(float)(tests.OKTests * 100) / tests.testsNb);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
 }
 
-void isEqualInt(int expected, int resulted, int lineNb, char *fileName){
-	tests.TestsRan++;
-	printTestInfo(lineNb, fileName);
+void isEqualInt(int expected, int resulted, int lineNb){
+	printTestInfo(lineNb);
 	if (expected == resulted)
 		displaySuccess();
 	else{
@@ -47,9 +41,8 @@ void isEqualInt(int expected, int resulted, int lineNb, char *fileName){
 	}
 }
 
-void isEqualFloat(float expected, float resulted, int lineNb, char *fileName){
-	tests.TestsRan++;
-	printTestInfo(lineNb, fileName);
+void isEqualFloat(float expected, float resulted, int lineNb){
+	printTestInfo(lineNb);
 	if (expected == resulted)
 		displaySuccess();
 	else{
@@ -58,9 +51,8 @@ void isEqualFloat(float expected, float resulted, int lineNb, char *fileName){
 	}
 }
 
-void isEqualStr(const char *expected, const char *resulted, int lineNb, char *fileName){
-	tests.TestsRan++;
-	printTestInfo(lineNb, fileName);
+void isEqualStr(const char *expected, const char *resulted, int lineNb){
+	printTestInfo(lineNb);
 	if (!strcmp(expected, resulted))
 		displaySuccess();
 	else{
@@ -76,9 +68,8 @@ void	printData(void *data, void (*print)(void *)){
 		fprintf(stderr, "AYO Can't print this\n");
 }
 
-void	isDataEqual(void *expected, void *resulted, int lineNb, char *fileName, int (*cmp)(void *, void *), void (*print)(void *)){
-	tests.TestsRan++;
-	printTestInfo(lineNb, fileName);
+void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, void *), void (*print)(void *)){
+	printTestInfo(lineNb);
 	if (cmp(expected, resulted))
 		displaySuccess();
 	else{
@@ -88,5 +79,19 @@ void	isDataEqual(void *expected, void *resulted, int lineNb, char *fileName, int
 		fprintf(stderr, "--- Resulted ---\n");
 		printData(resulted, print);
 		fprintf(stderr, "----------------\n");
+	}
+}
+
+
+void	registerTest(testFunction test){
+	tests.tests[tests.testsNb].func = test;
+	tests.tests[tests.testsNb].test = NULL;
+
+	tests.testsNb++;
+}
+
+void	runTest(){
+	for (int i = 0; i < tests.testsNb; i++){
+		tests.tests[i].func();
 	}
 }

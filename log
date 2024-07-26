@@ -1,24 +1,24 @@
 ========================== JTEST START ==========================
 ===============> Entering test.c
-Test #001 Line #026: |PASSED|
-Test #002 Line #027: |PASSED|
-Test #003 Line #028: |PASSED|
-Test #004 Line #029: |PASSED|
-Test #005 Line #030: |FAILED| => Expected 7.300, resulted 7.400
-Test #006 Line #031: |FAILED| => Expected Hey, resulted Hi
-Test #007 Line #032: |PASSED|
-Test #008 Line #033: |FAILED|
+Test #001 Line #034: |FAILED| => Expected 7.300, resulted 7.400
+Test #002 Line #035: |FAILED| => Expected Hey, resulted Hi
+Test #003 Line #036: |PASSED|
+Test #004 Line #037: |FAILED|
 --- EXPECTED ---
 x =   0; y =   6
 --- Resulted ---
 x =   1; y =   6
 ----------------
-Test #009 Line #036: |FAILED|
+Test #005 Line #040: |FAILED|
 --- EXPECTED ---
 AYO Can't print this
 --- Resulted ---
 AYO Can't print this
 ----------------
+Test #006 Line #024: |PASSED|
+Test #007 Line #025: |PASSED|
+Test #008 Line #026: |PASSED|
+Test #009 Line #027: |PASSED|
 
 9 Tests Ran, 5 PASSED, and 4 Failed, 55.56%
 =========================== JTEST END ===========================

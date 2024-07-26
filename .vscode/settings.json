@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"jtest.h": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"bitset": "c",
+		"algorithm": "c",
+		"__bit_reference": "c",
+		"unordered_map": "c"
 	}
 }

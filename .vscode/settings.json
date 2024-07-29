@@ -25,6 +25,7 @@
 		"__memory": "c",
 		"limits": "c",
 		"locale": "c",
-		"vector": "c"
+		"vector": "c",
+		"stdio.h": "c"
 	}
 }

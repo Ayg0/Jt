@@ -4,15 +4,15 @@ _testStruct jTestData;
 
 void	printTestInfo(int lineNb){
 	static int currentTest;
-	fprintf(stderr, "Test #%03d Line #%03d: ", currentTest, lineNb);
+	fprintf(stderr, "Test %03d | Line %04d: ", currentTest, lineNb);
 	currentTest++;
 }
 
 void	displayGroup(int count, const char *testGroup, char state){
-	fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s: %s\n",
+	fprintf(stderr, "[" BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR "] %s: %s\n",
 				count,
 				testGroup,
-				state == IGNORE_TEST ? IGNORE_COLOR "IGNORED" DEFF_COLOR: "");
+				state == IGNORE_TEST ? "[" IGNORE_COLOR "IGNORED" DEFF_COLOR "]": "");
 }
 
 void	displaySuccess(){
@@ -45,26 +45,6 @@ void jEnd(){
 	if (jTestData.IgnoredTests)
 		fprintf(stderr, "IGNORED Groups: %d\n", jTestData.IgnoredTests);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
-}
-
-void isEqualInt(int expected, int resulted, int lineNb){
-	printTestInfo(lineNb);
-	if (expected == resulted)
-		displaySuccess();
-	else{
-		displayFail();
-		fprintf(stderr, " => Expected %d, resulted %d\n", expected, resulted);
-	}
-}
-
-void isEqualFloat(float expected, float resulted, int lineNb){
-	printTestInfo(lineNb);
-	if (expected == resulted)
-		displaySuccess();
-	else{
-		displayFail();
-		fprintf(stderr, " => Expected %.3f, resulted %.3f\n", expected, resulted);
-	}
 }
 
 void isEqualStr(const char *expected, const char *resulted, int lineNb){
@@ -108,7 +88,7 @@ void	registerTest(testFunction test){
 	jTestData.testsNb++;
 }
 
-void	runTests(){
+void	runAll(){
 	int feedbacks = 0, prevFeedbacks = 0;
 	for (int i = 0; i < jTestData.testsNb; i++){
 		prevFeedbacks = feedbacks;
@@ -117,4 +97,8 @@ void	runTests(){
 		if (prevFeedbacks == feedbacks)
 			jTestData.IgnoredTests++;
 	}
+}
+
+void	runTest(testFunction f){
+	f();
 }

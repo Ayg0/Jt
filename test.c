@@ -18,17 +18,18 @@ void printVector(void *data){
 }
 
 void Jsetup(){
-    printf("\033[33mEnv Setup\033[0m\n");
+    // printf("\033[33mEnv Setup\033[0m\n");
 }
 
 void Jcleanup(){
-	printf("\033[33mEnv cleanup\033[0m\n");
+	// printf("\033[33mEnv cleanup\033[0m\n");
 }
 
-TEST_START(vectorDataTests, IGNORE_TEST)
+TEST_START(vectorDataTests)
 	_vector v1 = {.x = 0, .y = 6};
 	_vector v2 = {.x = 0, .y = 6};
 	ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
+	ASSERT_HEX_EQU(6, 55);
 	v2.x = 0;
 	v2.y = 5;
 	ASSERT_DATA_EQU(&v1, &v2, cmpVector, NULL);
@@ -42,13 +43,13 @@ TEST_END
 
 TEST_START(vectorSimpleTests)
 	ASSERT_FLOAT_EQU(7.3, 7.3);
-	ASSERT_INT_EQU(7.3, 7.3);
+	ASSERT_INT32_EQU(7.3, 7.3);
 	ASSERT_STR_EQU("Hi", "Hi");
 TEST_END
 
 int	main(){
-	JTEST_START();
-	runTests();
-	JTEST_END();
+	JTEST_START;
+	// runTest(vectorSimpleTests);
+	runAll();
+	JTEST_END;
 }
-

@@ -9,8 +9,8 @@
 typedef void (*testFunction)();
 typedef struct test
 {
-	const char		*test;
 	testFunction	func;
+	int				Ignored;
 } _test;
 
 typedef struct testStruct{
@@ -18,6 +18,7 @@ typedef struct testStruct{
 	_test	tests[MAX_TESTS];
 	int		OKTests;
 	int		KOTests;
+	int		IgnoredTests;
 } _testStruct;
 	
 # define TEST_START(base)\
@@ -26,11 +27,13 @@ typedef struct testStruct{
         registerTest(base); \
     }\
 	void base(){\
-		fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s:\n", __COUNTER__, __func__);\
+		displayGroup(__COUNTER__, __func__);\
 		Jsetup();\
 
 # define TEST_END Jcleanup();\
 }
+
+# define IGNORE_ME return ;\
 
 #ifdef USE_COLORS
 	# define DEFF_COLOR "\033[0m"
@@ -45,8 +48,8 @@ typedef struct testStruct{
 #endif
 
 # define ASSERT_INT_EQU(EXPECTED, RESULT) isEqualInt(EXPECTED, RESULT, __LINE__)
-# define ASSERT_FLOAT_EQU(EXPECTED, RESULT) isEqualFloat(EXPECTED, RESULT, __LINE__)
 # define ASSERT_STR_EQU(EXPECTED, RESULT) isEqualStr(EXPECTED, RESULT, __LINE__)
+# define ASSERT_FLOAT_EQU(EXPECTED, RESULT) isEqualFloat(EXPECTED, RESULT, __LINE__)
 # define ASSERT_DATA_EQU(EXPECTED, RESULT, CMP_FUNC, PRINT_FUNC) isDataEqual(EXPECTED, RESULT, __LINE__, CMP_FUNC, PRINT_FUNC)
 
 # define JTEST_START() jStart()
@@ -57,10 +60,12 @@ void	jStart();
 void	Jsetup();
 void	Jcleanup();
 
-void	runTest();
+void	runTests();
 void	registerTest(testFunction test);
 
 void	isEqualInt(int expected, int resulted, int lineNb);
 void	isEqualFloat(float expected, float resulted, int lineNb);
 void	isEqualStr(const char *expected, const char *resulted, int lineNb);
 void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, void *), void (*print)(void *));
+
+void	displayGroup(int count, const char *testGroup);

@@ -15,5 +15,5 @@ lib:
 	ar rcs $(LIB_NAME) jmain.o
 
 clean:
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(LIB_NAME) jmain.o
 re: clean all

@@ -8,6 +8,10 @@ void	printTestInfo(int lineNb){
 	currentTest++;
 }
 
+void	displayGroup(int count, const char *testGroup){
+	fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s:\n", count, testGroup);
+}
+
 void	displaySuccess(){
 	fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n");
 	jTestData.OKTests++;
@@ -25,16 +29,18 @@ void jStart(){
 void jEnd(){
 	int		totalTests = jTestData.OKTests + jTestData.KOTests;
 	float	successPercentage;
-
+	
 	if (totalTests != 0)
 		successPercentage = (float)(jTestData.OKTests * 100) / totalTests;
 	else
 		successPercentage = 0;
-	fprintf(stderr, "\nTESTS RAN:    %d\nPASSED:       %d\nFailed:       %d\nSUCCESS RATE: %.2f%%\n", 
+	fprintf(stderr, "\nTESTS RAN:      %d\nPASSED:         %d\nFailed:         %d\nSUCCESS RATE:   %.2f%%\n", 
 	totalTests,
 	jTestData.OKTests,
 	jTestData.KOTests,
 	successPercentage);
+	if (jTestData.IgnoredTests)
+		fprintf(stderr, "IGNORED Groups: %d\n", jTestData.IgnoredTests);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
 }
 
@@ -96,11 +102,16 @@ void	registerTest(testFunction test){
 		exit(1);
 	}
 	jTestData.tests[jTestData.testsNb].func = test;
-	jTestData.tests[jTestData.testsNb].test = NULL;
 	jTestData.testsNb++;
 }
 
-void	runTest(){
-	for (int i = 0; i < jTestData.testsNb; i++)
+void	runTests(){
+	int feedbacks = 0, prevFeedbacks = 0;
+	for (int i = 0; i < jTestData.testsNb; i++){
+		prevFeedbacks = feedbacks;
 		jTestData.tests[i].func();
+		feedbacks = jTestData.KOTests + jTestData.OKTests;
+		if (prevFeedbacks == feedbacks)
+			jTestData.IgnoredTests++;
+	}
 }

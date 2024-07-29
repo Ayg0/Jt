@@ -18,20 +18,14 @@ void printVector(void *data){
 }
 
 void Jsetup(){
-    //printf("\033[33mEnv Setup\033[0m\n");
+    printf("\033[33mEnv Setup\033[0m\n");
 }
 
 void Jcleanup(){
-	//printf("\033[33mEnv cleanup\033[0m\n");
+	printf("\033[33mEnv cleanup\033[0m\n");
 }
 
-TEST_START(vectorSimpleTests)
-	ASSERT_FLOAT_EQU(7.3, 7.3);
-	ASSERT_INT_EQU(7.3, 7.3);
-	ASSERT_STR_EQU("Hi", "Hi");
-TEST_END
-
-TEST_START(vectorDataTests)IGNORE_ME
+TEST_START(vectorDataTests, IGNORE_TEST)
 	_vector v1 = {.x = 0, .y = 6};
 	_vector v2 = {.x = 0, .y = 6};
 	ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
@@ -44,6 +38,12 @@ TEST_START(sprintfTest)
 	char s[20];
 	sprintf(s, "%s", "Hey");
 	ASSERT_STR_EQU("Hey", s);
+TEST_END
+
+TEST_START(vectorSimpleTests)
+	ASSERT_FLOAT_EQU(7.3, 7.3);
+	ASSERT_INT_EQU(7.3, 7.3);
+	ASSERT_STR_EQU("Hi", "Hi");
 TEST_END
 
 int	main(){

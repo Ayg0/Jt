@@ -4,7 +4,9 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define MAX_TESTS 100
+# define MAX_TESTS			100
+# define DEFAULT_TEST_STATE	1
+# define IGNORE_TEST		0
 
 typedef void (*testFunction)();
 typedef struct test
@@ -20,31 +22,38 @@ typedef struct testStruct{
 	int		KOTests;
 	int		IgnoredTests;
 } _testStruct;
-	
-# define TEST_START(base)\
+
+// Declare a New Test Group
+// => Optional Param IGNORE_TEST, to ignore the group
+# define TEST_START(...) TEST_START_HELPER(__VA_ARGS__, DEFAULT_TEST_STATE)
+
+# define TEST_START_HELPER(base, STATE, ...)\
 	void base(); \
     __attribute__((constructor)) void register_##base() { \
         registerTest(base); \
     }\
 	void base(){\
-		displayGroup(__COUNTER__, __func__);\
-		Jsetup();\
-
+		static char state = STATE;\
+		displayGroup(__COUNTER__, __func__, state);\
+		if (!state)\
+			return;\
+		Jsetup();
+// Close the Test Group Block --MUST--
 # define TEST_END Jcleanup();\
 }
-
-# define IGNORE_ME return ;\
 
 #ifdef USE_COLORS
 	# define DEFF_COLOR "\033[0m"
 	# define SUCC_COLOR "\033[1;37;42m"
 	# define FAIL_COLOR "\033[1;37;41m"
 	# define BLUE_BOLD_COLOR "\033[1;34m"
+	# define IGNORE_COLOR "\033[1;36m"
 #else
 	# define DEFF_COLOR "|"
 	# define SUCC_COLOR "|"
 	# define FAIL_COLOR "|"
 	# define BLUE_BOLD_COLOR "|"
+	# define IGNORE_COLOR "|"
 #endif
 
 # define ASSERT_INT_EQU(EXPECTED, RESULT) isEqualInt(EXPECTED, RESULT, __LINE__)
@@ -57,7 +66,9 @@ typedef struct testStruct{
 void	jEnd();
 void	jStart();
 
+// runs before each Test Group:
 void	Jsetup();
+// runs after each Test Group:
 void	Jcleanup();
 
 void	runTests();
@@ -68,4 +79,4 @@ void	isEqualFloat(float expected, float resulted, int lineNb);
 void	isEqualStr(const char *expected, const char *resulted, int lineNb);
 void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, void *), void (*print)(void *));
 
-void	displayGroup(int count, const char *testGroup);
+void	displayGroup(int count, const char *testGroup, char state);

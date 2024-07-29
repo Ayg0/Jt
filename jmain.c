@@ -8,8 +8,11 @@ void	printTestInfo(int lineNb){
 	currentTest++;
 }
 
-void	displayGroup(int count, const char *testGroup){
-	fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s:\n", count, testGroup);
+void	displayGroup(int count, const char *testGroup, char state){
+	fprintf(stderr, BLUE_BOLD_COLOR "TestGroup%d" DEFF_COLOR " %s: %s\n",
+				count,
+				testGroup,
+				state == IGNORE_TEST ? IGNORE_COLOR "IGNORED" DEFF_COLOR: "");
 }
 
 void	displaySuccess(){

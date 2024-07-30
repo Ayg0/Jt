@@ -7,9 +7,9 @@ Just-Test is your Test-Harness software made in C for C
   - Assertions.
 ### Structure of a Test file:
   - Your test file must Contain:
-      - main with at leats JTEST_START and JTEST_END, which defines the block where you call the tests.
-      - You can call induvial TestGroups Using runTest(<testGroup>); or run all tests using runAll();
-      - A definition of Jsetup() and Jcleanup(), you can leave them empty if you don't need them.
+      - main with at leats `JTEST_START` and `JTEST_END`, which defines the block where you call the tests.
+      - You can call induvial TestGroups Using `runTest`(<testGroup>); or run all tests using `runAll`();
+      - A definition of `Jsetup`() and `Jcleanup`(), you can leave them empty if you don't need them.
   - your test file can have multiple testGroups declared.
   - Multiple Assertions to make sure everything works well.
 ### Test Groups:
@@ -21,7 +21,7 @@ Just-Test is your Test-Harness software made in C for C
           ASSERT_INT32_EQU(-5, add(6, -11);
         TEST_END
       ```
-  - TestGroups can be flaged to be ignored and not ran by JTEST, using the optional param IGNORE_TEST:
+  - TestGroups can be flaged to be ignored and not ran by JTEST, using the optional param `IGNORE_TEST`:
       ```C
         TEST_START(AddOutputChecks, IGNORE_TEST)
           ASSERT_INT32_EQU(3, add(1,2));

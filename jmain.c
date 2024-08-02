@@ -15,21 +15,21 @@ void	displayGroup(int count, const char *testGroup, char state){
 				state == IGNORE_TEST ? "[" IGNORE_COLOR "IGNORED" DEFF_COLOR "]": "");
 }
 
-void	displaySuccess(){
+void	displaySuccess(void){
 	fprintf(stderr, SUCC_COLOR "PASSED" DEFF_COLOR "\n");
 	jTestData.OKTests++;
 }
 
-void	displayFail(){
+void	displayFail(void){
 	jTestData.KOTests++;
 	fprintf(stderr, FAIL_COLOR "FAILED" DEFF_COLOR);
 }
 
-void jStart(){
+void jStart(void){
 	fprintf(stderr, "========================== JTEST START ==========================\n");
 }
 
-void jEnd(){
+void jEnd(void){
 	int		totalTests = jTestData.OKTests + jTestData.KOTests;
 	float	successPercentage;
 	
@@ -42,8 +42,8 @@ void jEnd(){
 	jTestData.OKTests,
 	jTestData.KOTests,
 	successPercentage);
-	if (jTestData.IgnoredTests)
-		fprintf(stderr, "IGNORED Groups: %d\n", jTestData.IgnoredTests);
+	if (jTestData.IgnoredGroupTests)
+		fprintf(stderr, "IGNORED Groups: %d\n", jTestData.IgnoredGroupTests);
 	fprintf(stderr, "=========================== JTEST END ===========================\n");
 }
 
@@ -88,14 +88,14 @@ void	registerTest(testFunction test){
 	jTestData.testsNb++;
 }
 
-void	runAll(){
+void	runAll(void){
 	int feedbacks = 0, prevFeedbacks = 0;
 	for (int i = 0; i < jTestData.testsNb; i++){
 		prevFeedbacks = feedbacks;
 		jTestData.tests[i].func();
 		feedbacks = jTestData.KOTests + jTestData.OKTests;
 		if (prevFeedbacks == feedbacks)
-			jTestData.IgnoredTests++;
+			jTestData.IgnoredGroupTests++;
 	}
 }
 

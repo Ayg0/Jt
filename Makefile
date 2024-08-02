@@ -1,9 +1,9 @@
-NAME = test
+NAME = testExamples
 LIB_NAME = jtest.a
 
 USE_COLORS = -DUSE_COLORS=1
 
-SRC = test.c jmain.c
+SRC = testExamples.c jmain.c
 
 all: $(NAME)
 

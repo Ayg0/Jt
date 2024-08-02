@@ -18,7 +18,7 @@ Just-Test is your Test-Harness software made in C for C
       ```C
         TEST_START(AddOutputChecks)
           ASSERT_INT32_EQU(3, add(1,2));
-          ASSERT_INT32_EQU(-5, add(6, -11);
+          ASSERT_INT32_EQU(-5, add(6, -11));
         TEST_END
       ```
   - TestGroups can be flaged to be ignored and not ran by JTEST, using the optional param `IGNORE_TEST`:
@@ -31,8 +31,8 @@ Just-Test is your Test-Harness software made in C for C
 ### Assertions:
   - Assertions are your building blocks, they support all generic types for example:
       ```C
-          ASSERT_UINT32_EQU(3, add(1,2);
-          ASSERT_INT32_EQU(-5, add(6, -11);
+          ASSERT_UINT32_EQU(3, add(1,2));
+          ASSERT_INT32_EQU(-5, add(6, -11));
           ASSERT_FLOAT_EQU(3.14, PI);
       ```
   - And also supports some useful formats, and types for example:

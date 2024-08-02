@@ -19,7 +19,7 @@ typedef struct testStruct{
 	_test	tests[MAX_TESTS];
 	int		OKTests;
 	int		KOTests;
-	int		IgnoredTests;
+	int		IgnoredGroupTests;
 } _testStruct;
 
 // Declare a New Test Group
@@ -46,7 +46,6 @@ typedef struct testStruct{
 	Jcleanup();\
 	}
 
-
 # define ASSERT_INT8_EQU(EXPECTED, RESULT)		IS_EQUAL_GEN(EXPECTED, RESULT, "%d", __LINE__)
 # define ASSERT_INT16_EQU(EXPECTED, RESULT)		IS_EQUAL_GEN(EXPECTED, RESULT, "%d", __LINE__)
 # define ASSERT_INT32_EQU(EXPECTED, RESULT)		IS_EQUAL_GEN(EXPECTED, RESULT, "%d", __LINE__)
@@ -70,8 +69,6 @@ typedef struct testStruct{
 
 # define JTEST_START jStart()
 # define JTEST_END jEnd()
-void	jEnd();
-void	jStart();
 
 
 #define IS_EQUAL_GEN(EXPECTED, RESULT, FORMAT_STR, LINE) \
@@ -99,21 +96,23 @@ void	jStart();
 	# define IGNORE_COLOR "|"
 #endif
 
-// runs before each Test Group:
-void	Jsetup();
-// runs after each Test Group:
-void	Jcleanup();
+void	jEnd(void);
+void	jStart(void);
 
-void	runAll();
+// runs before each Test Group:
+void	Jsetup(void);
+// runs after each Test Group:
+void	Jcleanup(void);
+
+
+void	runAll(void);
 void	runTest(testFunction f);
 void	registerTest(testFunction test);
 
-void	isEqualInt(int expected, int resulted, int lineNb);
-void	isEqualFloat(float expected, float resulted, int lineNb);
 void	isEqualStr(const char *expected, const char *resulted, int lineNb);
 void	isDataEqual(void *expected, void *resulted, int lineNb, int (*cmp)(void *, void *), void (*print)(void *));
 
-void	displayFail();
-void	displaySuccess();
+void	displayFail(void);
+void	displaySuccess(void);
 void	printTestInfo(int lineNb);
 void	displayGroup(int count, const char *testGroup, char state);

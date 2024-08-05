@@ -1,4 +1,4 @@
-# Jt
+# Jt:
 Jt or Just-Test is your Test-Harness software made in C for C
 
 ## Summary:

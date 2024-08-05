@@ -1,6 +1,7 @@
 NAME = testExamples
 LIB_NAME = jt.a
 
+# Comment Next line to Not use Colors
 USE_COLORS = -DUSE_COLORS=1
 
 SRC = testExamples.c jmain.c

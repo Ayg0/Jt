@@ -1,14 +1,14 @@
 # Jt:
 Jt or Just-Test is your Test-Harness software made in C for C
 
-## > Summary:
+## > Summary:<hr/>
   - How to Build and Use.
   - general Structure of a Test file.
   - Test Groups.
   - Assertions.
   - Additional Features.
   - Contributing.
-### > How to Build and Use:
+### > How to Build and Use:<hr/>
  - you can either build the library to use everywhere in the future:
    ```bash
    $> make lib
@@ -23,14 +23,14 @@ Jt or Just-Test is your Test-Harness software made in C for C
   ```bash
     $> make FILE=<path_to_your_file>
   ```
-### > Structure of a Test file:
+### > Structure of a Test file:<hr/>
   - Your test file must Contain:
       - main with at leats `JTEST_START` and `JTEST_END`, which defines the block where you call the tests.
       - You can call induvial TestGroups Using `runTest`(<testGroup>); or run all tests using `runAll`();
       - A definition of `Jsetup`() and `Jcleanup`(), you can leave them empty if you don't need them.
   - your test file can have multiple testGroups declared.
   - Multiple Assertions to make sure everything works well.
-### > Test Groups:
+### > Test Groups:<hr/>
   - If you Assertions are for the same purpose consider Grouping them under a TestGroup.
   - Here is a declaration example ensuring the output of the add function:
       ```C
@@ -46,7 +46,7 @@ Jt or Just-Test is your Test-Harness software made in C for C
           ASSERT_INT32_EQU(-5, add(6, -11));
         TEST_END
       ```
-### > Assertions:
+### > Assertions:<hr/>
   - Assertions are your building blocks, they support all generic types for example:
       ```C
           ASSERT_UINT32_EQU(3, add(1,2));
@@ -70,8 +70,8 @@ Jt or Just-Test is your Test-Harness software made in C for C
         _vector v2 = {.x = 0, .y = 6};
         ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
     ```
-### > Additional Features:
+### > Additional Features:<hr/>
   **=>** Jtest Work on the Standard Error By default making it easier to dump it's output to a log file.  
   **=>** Jtest offers a No-Colors mode to make it well presented in a log file where colors will not show up (check Makefile).
-### > Contributing:
+### > Contributing:<hr/>
   Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features. 

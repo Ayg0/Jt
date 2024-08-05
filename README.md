@@ -2,9 +2,27 @@
 Jt or Just-Test is your Test-Harness software made in C for C
 
 ## > Summary:
+  - How to Build and Use.
   - general Structure of a Test file.
   - Test Groups.
   - Assertions.
+  - Additional Features.
+  - Contributing.
+### > How to Build and Use:
+ - you can either build the library to use everywhere in the future:
+   ```bash
+   $> make lib
+   $> gcc -o Test MyTestFile.c jt.a
+   ```
+- Or you can compile it using the makeFile:
+  ```bash
+    >> change FILE=<path_to_your_file>
+    $> make
+  ```
+- BONUS: you can directly override variables in the makeFile like this:
+  ```bash
+    $> make FILE=<path_to_your_file>
+  ```
 ### > Structure of a Test file:
   - Your test file must Contain:
       - main with at leats `JTEST_START` and `JTEST_END`, which defines the block where you call the tests.

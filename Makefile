@@ -1,10 +1,12 @@
-NAME = testExamples
+NAME = jTestOut
 LIB_NAME = jt.a
+
+FILE = testExamples.c
 
 # Comment Next line to Not use Colors
 USE_COLORS = -DUSE_COLORS=1
 
-SRC = testExamples.c jmain.c
+SRC = $(FILE) jmain.c
 
 all: $(NAME)
 

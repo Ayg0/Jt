@@ -82,7 +82,7 @@ typedef struct testStruct{
         } \
     } while (0)
 
-#ifdef USE_COLORS
+#if USE_COLORS
 	# define DEFF_COLOR "\033[0m"
 	# define SUCC_COLOR "\033[1;37;42m"
 	# define FAIL_COLOR "\033[1;37;41m"

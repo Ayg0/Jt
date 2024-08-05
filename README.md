@@ -1,5 +1,5 @@
-# JTest
-Just-Test is your Test-Harness software made in C for C
+# Jt
+Jt or Just-Test is your Test-Harness software made in C for C
 
 ## Summary:
   - general Structure of a Test file.

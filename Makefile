@@ -1,5 +1,5 @@
 NAME = testExamples
-LIB_NAME = jtest.a
+LIB_NAME = jt.a
 
 USE_COLORS = -DUSE_COLORS=1
 

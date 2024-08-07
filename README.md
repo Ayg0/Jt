@@ -33,15 +33,17 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
    ```bash
    $> make FILE=<path_to_your_file>
    ```
-     - Check [LIBASM](https://github.com/Ayg0/LIBASM) where I did add Tests for under the Linux Section.
-## > *Structure of a Test file*:<a id='generalStructure'></a>
+     - Check [LIBASM](https://github.com/Ayg0/LIBASM) where I did add Tests for under the Linux Section.  
+<a id='generalStructure'></a>
+## > *Structure of a Test file*:
   - Your test file must Contain:
       - main with at leats `JTEST_START` and `JTEST_END`, which defines the block where you call the tests.
       - You can call induvial TestGroups Using `runTest`(<testGroup>); or run all tests using `runAll`();
       - A definition of `Jsetup`() and `Jcleanup`(), you can leave them empty if you don't need them.
   - your test file can have multiple testGroups declared.
-  - Multiple Assertions to make sure everything works well.
-## > *Test Groups*:<a id='testGroups'></a>
+  - Multiple Assertions to make sure everything works well.  
+<a id='testGroups'></a>
+## > *Test Groups*:
   - If you Assertions are for the same purpose consider Grouping them under a TestGroup.
   - Here is a declaration example ensuring the output of the add function:
       ```C
@@ -56,8 +58,9 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
           ASSERT_INT32_EQU(3, add(1,2));
           ASSERT_INT32_EQU(-5, add(6, -11));
         TEST_END
-      ```
-## > *Assertions*:<a id='assertions'></a>
+      ```  
+<a id='assertions'></a>
+## > *Assertions*:
   - Assertions are your building blocks, they support all generic types for example:
       ```C
           ASSERT_UINT32_EQU(3, add(1,2));
@@ -81,12 +84,15 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
         _vector v2 = {.x = 0, .y = 6};
         ASSERT_DATA_EQU(&v1, &v2, cmpVector, printVector);
     ```
-## > *Additional Features*:<a id='additionalFeatures'></a>
+<a id='additionalFeatures'></a>
+## > *Additional Features*:
   **=>** Jtest Work on the Standard Error By default making it easier to dump it's output to a log file.  
-  **=>** Jtest offers a No-Colors mode to make it well presented in a log file where colors will not show up (check Makefile).
-## > *Contributing*:<a id='contributing'></a>
-  Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features.
-## > *Examples*:<a id='examples'></a>
+  **=>** Jtest offers a No-Colors mode to make it well presented in a log file where colors will not show up (check Makefile).  
+<a id='contributing'></a>
+## > *Contributing*:
+  Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features.  
+<a id='examples'></a>
+## > *Examples*:
 | atoiBase | jtestExample |
 |---|---|
 | <img src="Assets/atoiBaseTests.png" alt="Image 1" width="400"> | <img src="Assets/jtestTests.png" alt="Image 2" width="400"> |

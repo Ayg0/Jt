@@ -1,5 +1,12 @@
-# Jt:
-Jt or Just-Test is your Test-Harness software made in C for C
+```
+     ██╗██╗   ██╗███████╗████████╗              ████████╗███████╗███████╗████████╗
+     ██║██║   ██║██╔════╝╚══██╔══╝              ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝
+     ██║██║   ██║███████╗   ██║       █████╗       ██║   █████╗  ███████╗   ██║   
+██   ██║██║   ██║╚════██║   ██║       ╚════╝       ██║   ██╔══╝  ╚════██║   ██║   
+╚█████╔╝╚██████╔╝███████║   ██║                    ██║   ███████╗███████║   ██║   
+ ╚════╝  ╚═════╝ ╚══════╝   ╚═╝                    ╚═╝   ╚══════╝╚══════╝   ╚═╝   
+```
+Just-Test or Jt for short is your test-harness made in C for C, with the goal of making it as easy as possible for C devs to integrate unit testing and test-driven development(TDD) into their workflow.
 
 ## > *Summary*:
   - How to Build and Use.

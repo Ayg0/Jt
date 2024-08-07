@@ -15,7 +15,8 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
 * [Assertions](#assertions)
 * [Additional Features](#additional-features)
 * [Contributing](#contributing)
-* [Examples](#examples)
+* [Examples](#Examples)
+* [Header](#1.1)
 ## > *How to Build and Use*:
  - you can either build the library to use everywhere in the future:
    ```bash
@@ -85,9 +86,9 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
   **=>** Jtest offers a No-Colors mode to make it well presented in a log file where colors will not show up (check Makefile).
 ## > *Contributing*:
   Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features.
-## > *Examples*:
-[examples-anchor]: #examples
 
+## [1.1]<a id='1.1'></a>
+## > *Examples*:
 | atoiBase | jtestExample |
 |---|---|
 | <img src="Assets/atoiBaseTests.png" alt="Image 1" width="400"> | <img src="Assets/jtestTests.png" alt="Image 2" width="400"> |

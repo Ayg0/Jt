@@ -9,12 +9,13 @@
 Just-Test or Jt for short is your test-harness made in C for C, with the goal of making it as easy as possible for C devs to integrate unit testing and test-driven development(TDD) into their workflow.
 
 ## *Summary*:
-  - How to Build and Use.
-  - general Structure of a Test file.
-  - Test Groups.
-  - Assertions.
-  - Additional Features.
-  - Contributing.
+* [How to Build and Use](#How-to-Build-and-Use)
+* [General Structure of a Test file](#general-structure-of-a-test-file)
+* [Test Groups](#test-groups)
+* [Assertions](#assertions)
+* [Additional Features](#additional-features)
+* [Contributing](#contributing)
+* [Examples](#examples)
 ## > *How to Build and Use*:
  - you can either build the library to use everywhere in the future:
    ```bash
@@ -85,6 +86,8 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
 ## > *Contributing*:
   Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features.
 ## > *Examples*:
+[examples-anchor]: #examples
+
 | atoiBase | jtestExample |
 |---|---|
 | <img src="Assets/atoiBaseTests.png" alt="Image 1" width="400"> | <img src="Assets/jtestTests.png" alt="Image 2" width="400"> |

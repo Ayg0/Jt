@@ -16,7 +16,8 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
 * [Additional Features](#additionalFeatures)
 * [Contributing](#contributing)
 * [Examples](#examples)
-## > *How to Build and Use*:<a id='HowToBuild'></a>
+<a id='HowToBuild'></a>
+## > *How to Build and Use*:
  - you can either build the library to use everywhere in the future:
    ```bash
    $> make lib

@@ -83,4 +83,8 @@ Just-Test or Jt for short is your test-harness made in C for C, with the goal of
   **=>** Jtest Work on the Standard Error By default making it easier to dump it's output to a log file.  
   **=>** Jtest offers a No-Colors mode to make it well presented in a log file where colors will not show up (check Makefile).
 ## > *Contributing*:
-  Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features. 
+  Contributions are very welcome! Feel free to open issues or pull requests for bug fixes, improvements, or new features.
+## > *Examples*:
+| atoiBase | jtestExample |
+|---|---|
+| <img src="Assets/atoiBaseTests.png" alt="Image 1" width="400"> | <img src="Assets/jtestTests.png" alt="Image 2" width="400"> |
